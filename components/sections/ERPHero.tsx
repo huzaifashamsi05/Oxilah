@@ -1,20 +1,20 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 
 const ERP3DScene = dynamic(() => import("./ERP3DScene"), { ssr: false });
 
-const containerVariants: Variants = {
+const containerVariants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
 };
 
-const itemVariants: Variants = {
+const itemVariants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } }
 };
 
 export default function ERPHero() {
@@ -28,12 +28,12 @@ export default function ERPHero() {
   }, []);
 
   return (
-    <section className="min-h-screen w-full flex items-center pt-40 pb-20 bg-background-primary relative overflow-hidden">
+    <section className="min-h-screen w-full flex items-center pt-24 md:pt-40 pb-16 md:pb-20 bg-background-primary relative overflow-hidden">
       
       <div className="absolute top-1/4 -right-1/4 w-[800px] h-[800px] rounded-full bg-accent-primary/10 blur-[150px] pointer-events-none" />
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-[60vh]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[60vh]">
           
           <motion.div 
             variants={containerVariants}
@@ -68,7 +68,7 @@ export default function ERPHero() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.5, delay: 0.3 }}
-            className="w-full h-[250px] lg:h-[600px] relative order-first lg:order-last mt-8 lg:mt-0"
+            className="w-full h-[220px] sm:h-[300px] lg:h-[600px] relative order-first lg:order-last mt-0 lg:mt-0"
           >
             <ERP3DScene isMobile={isMobile} />
           </motion.div>
